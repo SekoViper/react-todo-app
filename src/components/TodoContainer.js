@@ -45,6 +45,8 @@ class TodoContainer extends React.Component {
     const { todos } = this.state;
     todos.push(newTodo);
     this.setState(({ todos }) => todos);
+    const temp = JSON.stringify(todos);
+      localStorage.setItem('todos', temp);
   };
 
   setUpdate = (updatedTitle, id) => {
@@ -57,6 +59,24 @@ class TodoContainer extends React.Component {
         return todo;
       }),
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.todos !== this.state.todos) {
+      const temp = JSON.stringify(this.state.todos);
+      localStorage.setItem('todos', temp);
+    }
+    this.addTodoItem();
+  }
+
+  componentDidMount() {
+    const temp = localStorage.getItem('todos');
+    const loadedTodos = JSON.parse(temp);
+    if (loadedTodos) {
+      this.setState({
+        todos: loadedTodos,
+      });
+    }
   }
 
   render() {
