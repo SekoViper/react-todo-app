@@ -5,13 +5,13 @@ import TodoItem from './TodoItem';
 
 const TodosList = (props) => {
   const {
-    todos, id, handleChangeProps, deleteTodoProps, setUpdate,
+    todos, handleChangeProps, deleteTodoProps, setUpdate,
   } = props;
   return (
     <ul>
       {todos.map((todo) => (
         <TodoItem
-          key={id}
+          key={todo.id}
           todo={todo}
           handleChangeProps={handleChangeProps}
           deleteTodoProps={deleteTodoProps}
@@ -24,14 +24,12 @@ const TodosList = (props) => {
 
 TodosList.defaultProps = {
   todos: null,
-  id: null,
   handleChangeProps: null,
   deleteTodoProps: null,
   setUpdate: null,
 };
 TodosList.propTypes = {
   todos: PropTypes.string,
-  id: PropTypes.string,
   handleChangeProps: PropTypes.func,
   deleteTodoProps: PropTypes.func,
   setUpdate: PropTypes.func,
