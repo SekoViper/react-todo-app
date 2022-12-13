@@ -13,19 +13,23 @@ class TodoContainer extends React.Component {
     };
   }
 
-   handleChange = (id) => {
-     this.setState((prevState) => ({
-       todos: prevState.todos.map((todo) => {
-         if (todo.id === id) {
-           return {
-             ...todo,
-             completed: !todo.completed,
-           };
-         }
-         return todo;
-       }),
-     }));
-   };
+  componentDidMount() {
+    const temp = localStorage.getItem('todos');
+    const loadedTodos = JSON.parse(temp);
+    if (loadedTodos) {
+      this.setState({
+        todos: loadedTodos,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { todos } = this.state;
+    if (prevState.todos !== todos) {
+      const temp = JSON.stringify(todos);
+      localStorage.setItem('todos', temp);
+    }
+  }
 
   delTodo = (id) => {
     const { todos } = this.state;
@@ -46,37 +50,20 @@ class TodoContainer extends React.Component {
     todos.push(newTodo);
     this.setState(({ todos }) => todos);
     const temp = JSON.stringify(todos);
-      localStorage.setItem('todos', temp);
+    localStorage.setItem('todos', temp);
   };
 
   setUpdate = (updatedTitle, id) => {
     const { todos } = this.state;
     this.setState({
       todos: todos.map((todo) => {
+        const newTodo = { ...todo };
         if (todo.id === id) {
-          todo.title = updatedTitle;
+          newTodo.title = updatedTitle;
         }
-        return todo;
+        return newTodo;
       }),
     });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.todos !== this.state.todos) {
-      const temp = JSON.stringify(this.state.todos);
-      localStorage.setItem('todos', temp);
-    }
-    this.addTodoItem();
-  }
-
-  componentDidMount() {
-    const temp = localStorage.getItem('todos');
-    const loadedTodos = JSON.parse(temp);
-    if (loadedTodos) {
-      this.setState({
-        todos: loadedTodos,
-      });
-    }
   }
 
   render() {
