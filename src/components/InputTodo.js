@@ -27,7 +27,7 @@ class InputTodo extends Component {
         title: '',
       });
     } else {
-      alert('Please write item');
+      alert('Please enter a Todo');
     }
   }
 
@@ -43,7 +43,7 @@ class InputTodo extends Component {
           name="title"
           onChange={this.onChange}
         />
-        <button type="button" className="input-submit">
+        <button type="submit" className="input-submit">
           <FaPlusCircle />
         </button>
       </form>
