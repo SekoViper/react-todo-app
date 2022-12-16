@@ -23,7 +23,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Calculator <a name="about-project"></a>
+# 📖 Todo App <a name="about-project"></a>
 
 > An app to increase productivity, stopping you from forgetting things, helps prioritise tasks, manage tasks effectively, use time wisely and improve time management as well as workflow.
 
@@ -126,7 +126,7 @@
 
 > Contributions, issues, and feature requests are welcome!
 
-> Feel free to check the [issues page](https://github.com/sekoviper/calculator/issues).
+> Feel free to check the [issues page](https://github.com/sekoviper/react-to-app/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
