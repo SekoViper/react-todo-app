@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { FaTrash } from 'react-icons/fa';
@@ -8,8 +8,6 @@ function TodoItem(props) {
   const {
     todo, handleChangeProps, deleteTodoProps, setUpdate,
   } = props;
-
-  const { completed, id, title } = todo;
 
   const [editing, setEditing] = useState(false);
 
@@ -24,6 +22,7 @@ function TodoItem(props) {
     setEditing(true);
   };
 
+  const { completed, id, title } = todo;
   const viewMode = {};
   const editMode = {};
 
@@ -38,6 +37,10 @@ function TodoItem(props) {
       setEditing({ editing: false });
     }
   };
+
+  useEffect(() => () => {
+    console.log('Cleaning up...');
+  }, []);
 
   return (
     <li className={styles.item}>
